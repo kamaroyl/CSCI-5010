@@ -1,18 +1,54 @@
+#
+#  _Subject_ has a _Predicate_ whose value is "Object"
+#
 @prefix arch: <http://example.org/ucdenver/2021/fall/csci-5010/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 
-
-# Class defintions
+# Class definitions
 arch:QualityAttribute a rdfs:Class;
   rdfs:label "The class of Quality Attributes" .
 arch:Tactic a rdfs:Class ;
   rdfs:label "The class of tactics".
 arch:Source a rdfs:Class ;
+  rdfs:label "The class of sources" .
+arch:Stimulus a rdfs:Relation;
   rdfs:label "test" .
-arch:Stimulus a rdfs:Class;
-  rdfs:label "test" .
+arch:Measure a rdfs:Class;
+  rdfs:label "The class of measures" .
 
 # Predicates
+arch:measure  a rdf:predicate.
+arch:stimulus a rdf:predicate.
+arch:source   a rdf:predicate.
+
+
+# Instances
+# Quality Attributes
+#arch:availability a arch:QualityAttribute;
+#  rdfs:label "availability".
+arch:Interoperability a arch:QualityAttribute;
+  rdfs:label "Interoperability Quality Attributes".
+
+# Source
+arch:System a arch:Source;
+  rdfs:label "A system that originates requests".
+
+# Stimulus
+arch:requestToInteroperate a arch:Stimulus;
+  rdfs:label "A request to interoperate with a system".
+
+# Measures
+arch:percentAccepted a arch:Measure ;
+  rdfs:label "The percentage of information exchanges that were processed correctly".
+arch:percentageRejected a arch:Measure ;
+  rdfs:label "The percentage of information exchanges that were rejected correctly".
+
+
+# Relationships
+arch:Interoperability arch:stimulus arch:requestToInteroperate.
+arch:Interoperability arch:source   arch:System.
+arch:Interoperability arch:measure  arch:percentAccepted.
+arch:Interoperability arch:measure  arch:percentageRejected.
