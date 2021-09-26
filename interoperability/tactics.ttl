@@ -1,0 +1,37 @@
+######################### tactics.ttl #########################
+
+@prefix arch: <http://example.org/ucdenver/2021/fall/csci-5010/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+
+######################### Tactics ##########################
+arch:Tactics a owl:class .
+
+arch:has_name a owl:DataProperty;
+  rdfs:domain arch:Tactics;
+  rdfs:range xsd:string .
+
+arch:has_major_category a owl:ObjectProperty;
+  rdfs:domain arch:Tactics;
+  rdfs:range arch:TacticCategory .
+
+#################### Tactic Category #######################
+arch:TacticCategory a owl:class .
+
+arch:sub_category a owl:ObjectProperty; # not used by Interoperability, but other QA would use this
+  rdfs:domain arch:TacticCategory;
+  rdfs:range arch:TacticCategory .
+
+arch:has_tactic a owl:ObjectProperty;
+  rdfs:domain arch:TacticCategory;
+  rdfs:range arch:Tactic .
+
+########################## Tactic ##########################
+arch:Tactic a owl:class .
+
+arch:tactic_name a owl:DatatypeProperty;
+  rdfs:domain arch:Tactic;
+  rdfs:range xsd:string .
+

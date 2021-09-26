@@ -1,0 +1,26 @@
+######################### quality-attribute.ttl #########################
+
+@prefix arch: <http://example.org/ucdenver/2021/fall/csci-5010/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+
+######################### Quality Attribute #########################
+arch:QualityAttribute a owl:Class;
+  arch:has_scenario arch:Scenario;
+  arch:has_tactics  arch:Tactics .
+
+arch:has_scenario a owl:ObjectProperty;
+  rdfs:domain arch:QualityAttribute;
+  rdfs:range arch:Scenario .
+
+arch:has_tactics a owl:ObjectProperty;
+  rdfs:domain arch:QualityAttribute;
+  rdfs:range arch:Tactics .
+
+######################### Interoperability Quality Attribute #########################
+arch:Interoperability a owl:Class;
+  rdfs:subclass arch:QualityAttribute;
+  arch:has_scenario arch:InteroperabilityScenario .
+

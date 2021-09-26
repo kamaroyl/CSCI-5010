@@ -1,0 +1,63 @@
+####################### interoperability.ttl #######################
+@prefix arch: <http://example.org/ucdenver/2021/fall/csci-5010/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+
+######################### Interoperability Quality Attribute #########################
+arch:Interoperability a owl:Class;
+  rdfs:subclass arch:QualityAttribute;
+  arch:has_scenario arch:InteroperabilityScenario;
+  arch:has_tactics  arch:InteroperabilityTactics .
+
+######################### Interoperability Scenario #########################
+arch:InteroperabilityScenario a owl:Class;
+  rdfs:subclass arch:Scenario;
+  arch:has_scenario_row arch:InteroperabilityStimulus;
+  arch:has_scenario_row arch:InteroperabilityResponse;
+  arch:has_scenario_row arch:InteroperabilityResponseMeasure .
+
+######################### Interoperability Scenario Rows #########################
+arch:InteroperabilityStimulus a owl:Class;
+  rdfs:subclass arch:Stimulus;
+  arch:scenario_row_value 'A request to exchange information among system(s).' .
+
+arch:InteroperabilityResponse a owl:Class;
+  rdfs:subclass arch:Response;
+  arch:scenario_row_value "One or more of the following: 1) The request is (appropriately) rejected and appropriate entities (people or systems) are notified. 2) The request is (appropriately) accepted and information is exchanged successfully. 3) The request is logged by one or more of hte involved systems." .
+
+arch:InteroperabilityResponseMeasure a owl:Class;
+  rdfs:subclass arch:ResponseMeasure;
+  arch:scenario_row_value 'One or more of the following: 1) Percentage of information exchanges correctly processed 1) Percentage of information exchanges correctly rejected' .
+
+######################### Interoperability Tactics ########################
+arch:InteroperabilityTactics a owl:Class;
+  rdfs:subclass arch:Tactics;
+  arch:has_major_category arch:Locate;
+  arch:has_major_category arch:ManageInterfaces;
+  arch:has_name 'Interoperability Tactics' .
+
+#################### Interoperability Tactic Categories ###################
+arch:Locate a owl:Class;
+  rdfs:subclass arch:TacticCategory;
+  arch:has_tactic arch:DiscoverService .
+
+arch:ManageInterfaces a owl:Class;
+  rdfs:subclass arch:TacticCategory;
+  arch:has_tactic arch:Orchestrate;
+  arch:has_tactic arch:TailorInterface .
+
+#################### Interoperability Specific Tactics ####################
+arch:DiscoverService a owl:class;
+  rdfs:subclass arch:Tactic;
+  arch:tactic_name 'Discover Service' .
+
+arch:Orchestrate a owl:class;
+  rdfs:subclass arch:Tactic;
+  arch:tactic_name 'Orchestrate' .
+
+arch:TailorInterface a owl:class;
+  rdfs:subclass arch:Tactic;
+  arch:tactic_name 'Tailor Interface' .
+

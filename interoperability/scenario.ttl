@@ -1,0 +1,42 @@
+######################### scenario.ttl #########################
+
+@prefix arch: <http://example.org/ucdenver/2021/fall/csci-5010/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+
+######################### Scenario Row Class #########################
+arch:ScenarioRow a owl:Class .
+
+arch:scenario_name a owl:DatatypeProperty;
+  rdfs:domain arch:ScenarioRow;
+  rdfs:range xsd:string .
+
+arch:scenario_row_value a owl:DatatypeProperty;
+  rdfs:domain arch:ScenarioRow;
+  rdfs:range xsd:string .
+
+######################### Types of Scenario Rows #########################
+arch:Stimulus a owl:Class;
+  rdfs:subclass arch:ScenarioRow;
+  arch:scenario_name 'Stimulus' .
+
+arch:Response a owl:Class;
+  rdfs:subclass arch:ScenarioRow;
+  arch:scenario_name 'Response' .
+
+arch:ResponseMeasure a owl:Class;
+  rdfs:subclass arch:ScenarioRow;
+  arch:scenario_name 'Response Measure' .
+
+######################### Scenarios #########################
+arch:Scenario a owl:Class;
+  arch:has_scenario_row arch:Stimulus;
+  arch:has_scenario_row arch:Response;
+  arch:has_scenario_row arch:ResponseMeasure .
+
+arch:has_scenario_row a owl:ObjectProperty;
+  rdfs:domain arch:Scenario;
+  rdfs:range arch:ScenarioRow .
+
