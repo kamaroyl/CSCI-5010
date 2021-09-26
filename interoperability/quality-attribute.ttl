@@ -19,8 +19,3 @@ arch:has_tactics a owl:ObjectProperty;
   rdfs:domain arch:QualityAttribute;
   rdfs:range arch:Tactics .
 
-######################### Interoperability Quality Attribute #########################
-arch:Interoperability a owl:Class;
-  rdfs:subclass arch:QualityAttribute;
-  arch:has_scenario arch:InteroperabilityScenario .
-
